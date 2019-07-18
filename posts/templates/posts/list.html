@@ -1,0 +1,15 @@
+{% extends "posts/index.html" %}
+
+{% block title%} Список страниц {% endblock %}
+
+{% block content %}
+    <ul>
+        {% for post in posts %}
+        <li>
+            <a href="{% url 'detail' post_id=post.id %}">
+                {{ post.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -4,10 +4,10 @@ from . import views
 
 urlpatterns = [
     path('', views.posthome, name='home'),
-    path('create/', views.postcreate, name='create'),
-    path('detail/', views.postdetail, name='detail'),
+    path('/create/', views.postcreate, name='create'),
+    path('<int:post_id>/detail/', views.postdetail, name='detail'),
     path('list/', views.postlist, name='list'),
-    path('update/', views.postupdate, name='update'),
-    path('delete/', views.postdelete, name='delete'),
+    path('<int:post_id>/update/', views.postupdate, name='update'),
+    path('<int:post_id>/delete/', views.postdelete, name='delete'),
 ]
 

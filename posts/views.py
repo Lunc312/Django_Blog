@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+
+from posts.models import Post
 
 
 def posthome(request):
@@ -17,18 +20,22 @@ def postcreate(request):
     return render(request, "posts/index.html", content)
 
 
-def postdetail(request):
+def postdetail(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
     content = {
-        "title": "Страница"
+        "title": post.title,
+        'post': post,
     }
-    return render(request, "posts/index.html", content)
+    return render(request, "posts/detail.html", content)
 
 
 def postlist(request):
+    posts = Post.objects.all()
     content = {
-        "title": "Список страниц"
+        "title": "Список страниц",
+        "posts": posts,
     }
-    return render(request, "posts/index.html", content)
+    return render(request, "posts/list.html", content)
 
 
 def postupdate(request):
