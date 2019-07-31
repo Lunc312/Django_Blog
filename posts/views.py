@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
-from posts.models import Post
+from posts.models import Post, Project
 
 
 def posthome(request):
@@ -13,11 +13,11 @@ def posthome(request):
     return render(request, "posts/index.html", content)
 
 
-def postcreate(request):
+def about(request):
     content = {
-        "title": "Создание"
+        "title": "О себе"
     }
-    return render(request, "posts/index.html", content)
+    return render(request, "posts/about.html", content)
 
 
 def postdetail(request, post_id):
@@ -32,24 +32,20 @@ def postdetail(request, post_id):
 def postlist(request):
     posts = Post.objects.all()
     content = {
-        "title": "Список страниц",
+        "title": "Блог",
         "posts": posts,
     }
-    return render(request, "posts/list.html", content)
+    return render(request, "posts/list_posts.html", content)
 
 
-def postupdate(request):
+def projectlist(request):
+    projects = Project.objects.all()
     content = {
-        "title": "Редактирование страницы"
+        "title": "Мои проекты",
+        'projects': projects,
     }
-    return render(request, "posts/index.html", content)
+    return render(request, "posts/list_projects.html", content)
 
-
-def postdelete(request):
-    content = {
-        "title": "Удаление страницы"
-    }
-    return render(request, "posts/index.html", content)
 
 
 

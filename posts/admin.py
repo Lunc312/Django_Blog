@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Post
+from .models import Post, Project
 
 class PostModuleAdmin(admin.ModelAdmin):
     list_display=["__str__", "timepublish"]
@@ -15,6 +15,14 @@ class PostModuleAdmin(admin.ModelAdmin):
         model=Post
 
 
+class ProjectModuleAdmin(admin.ModelAdmin):
+    search_fields = ["title", "content"]
+
+    class Meta:
+        model=Project
+
+
 admin.site.register(Post, PostModuleAdmin)
+admin.site.register(Project, ProjectModuleAdmin)
 
 
