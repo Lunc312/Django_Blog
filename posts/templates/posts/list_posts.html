@@ -5,9 +5,9 @@
 {% block content %}
     {% for post in posts %}
         <p>
-            {{ post.title }}<br>
-            {{ post.content }}<br>
-            {{ post.timepublish }}<br>
+            <a href="{{ post.id }}/detail " > <h2 class="text-info">{{ post.title }}</h2> </a>
+            <p>{{ post.content }}</p>
+            <h6 class="text-info">Опубликовано: {{ post.timepublish }}</h6>
         </p>
     {% endfor %}
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block content %}
     {% for project in projects %}
         <p>
-            {{ project.title }}<br>
+            <h2 class="text-secondary">{{ project.title }}</h2>
             {{ project.content }}<br>
         </p>
     {% endfor %}

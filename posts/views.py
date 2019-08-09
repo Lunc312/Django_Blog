@@ -1,16 +1,24 @@
 from django.shortcuts import render
-from django.shortcuts import render_to_response
-from django.http import HttpResponse
+from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
 
-from posts.models import Post, Project
+from posts.models import Post, Project, Human, Comments
 
 
-def posthome(request):
-    content={
+class Posthome(TemplateView):
+
+    content = {
         "title": "Домашняя страница"
     }
-    return render(request, "posts/index.html", content)
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            humans = Human.objects.all()
+            ctx ={}
+            ctx['humans'] = humans
+            return render(request, "posts/index.html", self.content, ctx)
+        else:
+            return render(request, "posts/index.html", self.content, {})
 
 
 def about(request):
@@ -22,9 +30,11 @@ def about(request):
 
 def postdetail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+    comments = Comments.objects.filter(comments_post_id=post_id)
     content = {
         "title": post.title,
         'post': post,
+        'comments': comments
     }
     return render(request, "posts/detail.html", content)
 

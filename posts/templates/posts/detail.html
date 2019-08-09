@@ -6,6 +6,11 @@
 
 {% block content %}
     <ul>
-        <li>{{ post.content }}</li>
+        <p>{{ post.content }}</p>
+        <h6 class="text-info">Опубликовано: {{ post.timepublish }}</h6>
+        <h4>Комментарии:</h4>
+        {% for comment in comments%}
+        <p> {{comment.comments_text}} </p>
+        {% endfor %}
     </ul>
 {% endblock %}
