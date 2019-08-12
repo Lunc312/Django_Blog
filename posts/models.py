@@ -34,17 +34,3 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Human(models.Model):
-    name = models.CharField('Имя', max_length=50)
-    surname = models.CharField('Фамилия', max_length=50)
-    birth = models.DateField('День рождения', auto_now_add=False, auto_now=False)
-    gender = models.CharField('Пол', max_length=5, choices={('man', 'Man'), ('woman', 'Woman')})
-
-    class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
-
-    def __str__(self):
-        return 'Имя Фамилия'.format(self.name, self.surname)

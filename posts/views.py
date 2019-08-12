@@ -6,8 +6,9 @@ from django.shortcuts import get_object_or_404
 from .forms import CommentsForm
 from django.template.context_processors import csrf
 from django.contrib import auth
+from django.core.paginator import Paginator
 
-from posts.models import Post, Project, Human, Comments
+from posts.models import Post, Project, Comments
 
 
 def posthome(request):
@@ -51,21 +52,23 @@ def addcomment(request, post_id):
     return redirect('/list_posts/addcomment/%s/' % post_id)
 
 
-def postlist(request):
+def postlist(request, page_number=1):
     posts = Post.objects.all()
+    current_page = Paginator(posts, 5)
     content = {
         "title": "Блог",
-        "posts": posts,
+        "posts": current_page.page(page_number),
         'username': auth.get_user(request).username
     }
     return render(request, "posts/list_posts.html", content)
 
 
-def projectlist(request):
+def projectlist(request, page_number=1):
     projects = Project.objects.all()
+    current_page = Paginator (projects, 5)
     content = {
         "title": "Мои проекты",
-        'projects': projects,
+        'projects': current_page.page(page_number),
     }
     return render(request, "posts/list_projects.html", content)
 

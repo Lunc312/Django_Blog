@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Post, Project, Human, Comments
+from .models import Post, Project, Comments
 
 
 class PostInline(admin.StackedInline):
@@ -28,18 +28,7 @@ class ProjectModuleAdmin(admin.ModelAdmin):
         model = Project
 
 
-class HumanModuleAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "name", "surname"]
-    list_display_links = ["__str__", "name", "surname"]
-    list_filter = ["name"]
-    search_fields = ["name", "surname"]
-
-    class Meta:
-        model = Human
-
-
 admin.site.register(Post, PostModuleAdmin)
 admin.site.register(Project, ProjectModuleAdmin)
-admin.site.register(Human, HumanModuleAdmin)
 
 
