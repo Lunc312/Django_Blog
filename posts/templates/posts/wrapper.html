@@ -42,12 +42,18 @@
                 </button>
             </form>
             <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-outline-warning mr-1" href="login" role="button">
-                    Войти
-                </a>
-                <a class="btn btn-outline-warning mr-1" href="register" role="button">
-                    Зарегистрироваться
-                </a>
+                {% if username %}
+                    <a class="btn btn-outline-warning mr-1" href="/auth/logout/" role="button">
+                        Выйти
+                    </a>
+                {% else%}
+                    <a class="btn btn-outline-warning mr-1" href="/auth/login/" role="button">
+                        Войти
+                    </a>
+                    <a class="btn btn-outline-warning mr-1" href="/auth/register/" role="button">
+                        Зарегистрироваться
+                    </a>
+                {% endif%}
             </form>
         </div>
     </nav>

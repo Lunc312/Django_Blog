@@ -21,7 +21,7 @@ class Comments(models.Model):
         verbose_name_plural = 'Комментарии'
 
     comments_text = models.TextField('Текст комментария')
-    comments_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comments_post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
 
 
 class Project(models.Model):
